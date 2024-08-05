@@ -1,0 +1,271 @@
+html {
+  scrollbar-width: thin;
+  font-size: 80%;
+  scrollbar-color: #00008b #87cefa;
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 60%;
+  }
+  body {
+    flex-direction: column;
+  }
+  section {
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+  }
+}
+
+body {
+  display: flex;
+  align-items: center;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e90ff, #87cefa);
+  color: #333;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+}
+
+.spinner {
+  background: url(img/cricket.png) no-repeat center center;
+  background-size: contain;
+  width: 120px;
+  height: 120px;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #00008b;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+header {
+  background: linear-gradient(rgba(0, 0, 139, 0.7), rgba(0, 0, 139, 0.7)),
+    url(img/player.png) no-repeat center center;
+  background-size: cover;
+  height: 500px;
+  max-width: 100%;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  animation: headerAnim 5s infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes headerAnim {
+  0% {
+    background: linear-gradient(rgba(0, 0, 139, 0.7), rgba(0, 0, 139, 0.7)),
+      url(img/player.png) no-repeat center center;
+  }
+  100% {
+    background: linear-gradient(
+        rgba(30, 144, 255, 0.7),
+        rgba(30, 144, 255, 0.7)
+      ),
+      url(img/player.png) no-repeat center center;
+  }
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+header h1,
+header p {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: swipeUp 1s forwards;
+}
+
+@keyframes swipeUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+header h1.show,
+header p.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+section {
+  width: calc(50% - 40px);
+  max-width: 800px;
+  padding: 20px;
+  margin: 20px;
+  background: linear-gradient(135deg, #fff, #f0f8ff);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  transition: transform 0.5s, opacity 0.5s;
+  transform: translateX(100%);
+  opacity: 0;
+  float: left;
+}
+
+section:nth-child(even) {
+  transform: translateX(-100%);
+}
+
+section.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@keyframes swipeLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes swipeRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+h1,
+h2 {
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+li,
+section h2 {
+  color: #333;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 30%;
+}
+
+ul li {
+  background-color: #e0e0e0;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+ul li:hover {
+  background-color: #00008b;
+  color: #e0e0e0;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 10px 0;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  color: #87cefa;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+.footer-back-to-top {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #00008b;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: backgroundPulse 1.5s infinite;
+  transition: background 0.3s, color 0.3s;
+}
+
+.footer-back-to-top:hover {
+  background: #fff;
+  color: #00008b;
+}
+
+@keyframes backgroundPulse {
+  0% {
+    background-color: #00008b;
+  }
+  50% {
+    background-color: #1e90ff;
+  }
+  100% {
+    background-color: #00008b;
+  }
+}
+
+.hidden {
+  display: none;
+}
